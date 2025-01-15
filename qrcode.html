@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador De QR Code</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    #qrcode {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gerador De QR Code</h1>
+  <p>Digite um link abaixo para gerar um QR Code:</p>
+  <input type="text" id="linkInput" placeholder="Insira o link aqui" size="40">
+  <button onclick="generateQRCode()">Gerar QR Code</button>
+  <div id="qrcode"></div>
+
+  <!-- Biblioteca qrcode.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    function generateQRCode() {
+      const link = document.getElementById('linkInput').value;
+      const qrcodeContainer = document.getElementById('qrcode');
+      
+      // Limpa o QR Code anterior
+      qrcodeContainer.innerHTML = '';
+
+      if (link.trim() === '') {
+        alert('Por favor, insira um link válido.');
+        return;
+      }
+
+      // Gera o QR Code
+      new QRCode(qrcodeContainer, {
+        text: link,
+        width: 200,
+        height: 200,
+      });
+    }
+  </script>
+</body>
+</html>
